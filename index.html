@@ -409,11 +409,9 @@
 </head>
 <body>
 
-    <!-- Floating Hearts Background -->
     <div class="floating-hearts" id="heartsContainer"></div>
     <div class="bg-glow"></div>
 
-    <!-- Welcome Screen -->
     <div class="welcome-screen">
         <div class="welcome-content">
             <h1 class="welcome-text">Welcome My Chuchundar</h1>
@@ -426,7 +424,6 @@
         </div>
     </div>
 
-    <!-- Main Menu Card -->
     <div class="card active" id="menu">
         <h2>For My Chuchundar 😘</h2>
         <p class="quote">"You are my today and all of my tomorrows."</p>
@@ -452,7 +449,6 @@
         </p>
     </div>
 
-    <!-- About Section -->
     <div class="card" id="about">
         <h2>Our Beautiful Journey ❤️</h2>
         
@@ -478,203 +474,132 @@
         </div>
     </div>
 
-    <!-- Question 1 -->
     <div class="card" id="q1">
         <div class="question-counter">Question 1 of 10</div>
         <h2>Sawal No. 1 💭</h2>
         <p>Mein kion pasand hoon? Koi waja batana zaroori hai!</p>
         <textarea id="ans1" placeholder="Yahan apni dil ki baat likhein..."></textarea>
-        
-        <div class="whatsapp-notice">
-            <i class="fab fa-whatsapp"></i>
-            <span>Answer will be sent to my WhatsApp when you click Next</span>
-        </div>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('about')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(1)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('about')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(1)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 2 -->
     <div class="card" id="q2">
         <div class="question-counter">Question 2 of 10</div>
         <h2>Sawal No. 2 💔</h2>
         <p>Agar main chor doon , toh kya aap mujhe miss karoge? 🥺</p>
         <textarea id="ans2" placeholder="Sachay dil se jawab dena..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q1')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(2)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q1')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(2)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 3 -->
     <div class="card" id="q3">
         <div class="question-counter">Question 3 of 10</div>
         <h2>Sawal No. 3 😊</h2>
         <p>Mein to rude hoti bhi nahi hoin apko q lagta hain? 🥺</p>
         <textarea id="ans3" placeholder="Apki asal raye dena..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q2')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(3)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q2')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(3)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 4 -->
     <div class="card" id="q4">
         <div class="question-counter">Question 4 of 10</div>
         <h2>Sawal No. 4 🤔</h2>
         <p>Pehly bhi mein apko tokti thi chezoin pr jis ko apny waja banaya tha chorny ka or ab yeh sb apny start kiya tu ab bhi ap esa kr sktay hain? 🥺</p>
         <textarea id="ans4" placeholder="Soch samajh kar jawab dena..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q3')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(4)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q3')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(4)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 5 -->
     <div class="card" id="q5">
         <div class="question-counter">Question 5 of 10</div>
         <h2>Sawal No. 5 🤔</h2>
         <p>Aur agar nahi chhor sktay tu ab aur pehly me esa kya fark tha yeh bataein</p>
         <textarea id="ans5" placeholder="Apni feelings share karein..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q4')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(5)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q4')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(5)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 6 -->
     <div class="card" id="q6">
         <div class="question-counter">Question 6 of 10</div>
         <h2>Sawal No. 6 💪</h2>
         <p>Mere liye stand le paengy ya hamesha sirf compromise pr chalengi mein?</p>
         <textarea id="ans6" placeholder="Apni commitment ka izhar karein..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q5')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(6)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q5')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(6)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 7 -->
     <div class="card" id="q7">
         <div class="question-counter">Question 7 of 10</div>
         <h2>Sawal No. 7 💍</h2>
         <p>Kheir jb pehly bhi mein shadi se related baat krti thi tu apki haath ti thi tu kya ab bhi esa hai ya ap khud bhi ho?</p>
         <textarea id="ans7" placeholder="Apki asal khwahish bataein..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q6')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(7)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q6')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(7)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 8 -->
     <div class="card" id="q8">
         <div class="question-counter">Question 8 of 10</div>
         <h2>Sawal No. 8 ⏳</h2>
         <p>Ya ap ab khud chahtay k shadi jaldi ho jae?</p>
         <textarea id="ans8" placeholder="Apki timeline bataein..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q7')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(8)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q7')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(8)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 9 -->
     <div class="card" id="q9">
         <div class="question-counter">Question 9 of 10</div>
         <h2>Sawal No. 9 😟</h2>
         <p>Apko ab lagny laga k mein bhot batmeez hoin ap mere sath nahi reh apengy?</p>
         <textarea id="ans9" placeholder="Apki concerns share karein..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q8')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(9)">
-                Send & Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q8')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(9)">Send & Next</button>
         </div>
     </div>
 
-    <!-- Question 10 -->
     <div class="card" id="q10">
         <div class="question-counter">Question 10 of 10</div>
         <h2>Sawal No. 10 💖</h2>
         <p>Ek aakhri sawal: Kitna pyaar karte ho mujhse? Scale of 1-100 mein bataein! 😉</p>
         <textarea id="ans10" placeholder="Number ke saath reason bhi dena..."></textarea>
-        
         <div class="nav-btns">
-            <button class="action-btn secondary" onclick="showSection('q9')">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button class="action-btn primary" onclick="sendWhatsApp(10)">
-                Final Submit <i class="fab fa-whatsapp"></i>
-            </button>
+            <button class="action-btn secondary" onclick="showSection('q9')">Back</button>
+            <button class="action-btn primary" onclick="sendWhatsApp(10)">Final Submit <i class="fab fa-whatsapp"></i></button>
         </div>
     </div>
 
-    <!-- Finish Screen -->
     <div class="card" id="finish">
         <h2>I Love You! 💕</h2>
         <div style="text-align: center; margin: 30px 0;">
             <i class="fas fa-heart" style="font-size: 4rem; color: #ff6bcb; margin-bottom: 20px;"></i>
             <p style="font-size: 1.3rem;">Aapke saare jawab mujhse WhatsApp par mil gaye hain! ❤️</p>
         </div>
-        
-        <p class="quote">"Thank you for being the best part of my life. Every answer you gave is a treasure I'll keep forever."</p>
-        
-        <p>Shukriya meri life mein aane ke liye, my chuchundar! 💖</p>
-        
         <button class="action-btn primary" onclick="showSection('menu')" style="width: 100%; margin-top: 30px;">
             <i class="fas fa-redo"></i> Start Again
         </button>
     </div>
 
     <script>
-        const WHATSAPP_NUMBER = "03292043153";
+        // UPDATED WHATSAPP NUMBER
+        const WHATSAPP_NUMBER = "923292043153"; // Including country code for better reliability
         const YOUR_NAME = "Ameena";
         
-        // Create floating hearts
         function createFloatingHearts() {
             const container = document.getElementById('heartsContainer');
             for(let i = 0; i < 20; i++) {
@@ -691,14 +616,8 @@
         function showSection(id) {
             document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
-            // Add smooth scroll to top
             window.scrollTo({top: 0, behavior: 'smooth'});
-            
-            // Add special effects for some sections
-            if(id === 'finish') {
-                showConfetti();
-            }
+            if(id === 'finish') showConfetti();
         }
 
         function showConfetti() {
@@ -710,7 +629,6 @@
             confetti.style.height = '100%';
             confetti.style.zIndex = '9999';
             confetti.style.pointerEvents = 'none';
-            
             for(let i = 0; i < 100; i++) {
                 const heart = document.createElement('div');
                 heart.innerHTML = '<i class="fas fa-heart"></i>';
@@ -720,31 +638,16 @@
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.top = '-50px';
                 heart.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                
                 confetti.appendChild(heart);
             }
-            
             document.body.appendChild(confetti);
             setTimeout(() => confetti.remove(), 3000);
-            
-            // Add fall animation
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes fall {
-                    to {
-                        transform: translateY(100vh) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
         }
 
         function sendWhatsApp(qNum) {
             let answer = document.getElementById('ans' + qNum).value.trim();
-            
             if(!answer) {
-                alert("Pehle kuch likho toh sahi! 😊\n\nDil ki baat share karo, main intezar kar rahi hoon...");
+                alert("Pehle kuch likho toh sahi! 😊");
                 document.getElementById('ans' + qNum).focus();
                 return;
             }
@@ -762,44 +665,23 @@
                 "Ek aakhri sawal: Kitna pyaar karte ho mujhse? Scale of 1-100 mein bataein! 😉"
             ];
 
+            // Beautifully formatted message
             let text = `💖 *Question ${qNum} for ${YOUR_NAME}* 💖\n\n`;
-            text += `*Sawal:* ${questions[qNum-1]}\n\n`;
-            text += `*Jawab:* ${answer}\n\n`;
-            text += `---\n`;
-            text += `Sent from your special love website ❤️`;
+            text += `*Q:* _${questions[qNum-1]}_\n\n`;
+            text += `*A:* *${answer}*\n\n`;
+            text += `✨ Sent with love from our website ✨`;
             
             let url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-            
-            // Open WhatsApp in new tab
             window.open(url, '_blank');
             
-            // Show success message
-            setTimeout(() => {
-                alert(`Answer ${qNum} sent successfully! 💕\n\nWhatsApp khul gaya hoga, bas send kar dena!`);
-            }, 500);
-            
-            // Move to next question or finish
             if(qNum < 10) {
-                setTimeout(() => {
-                    showSection('q' + (qNum + 1));
-                }, 1000);
+                setTimeout(() => showSection('q' + (qNum + 1)), 500);
             } else {
-                setTimeout(() => {
-                    showSection('finish');
-                }, 1500);
+                setTimeout(() => showSection('finish'), 1000);
             }
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createFloatingHearts();
-            
-            // Auto focus first answer box
-            setTimeout(() => {
-                const ans1 = document.getElementById('ans1');
-                if(ans1) ans1.focus();
-            }, 1000);
-        });
+        document.addEventListener('DOMContentLoaded', createFloatingHearts);
     </script>
 </body>
 </html>
