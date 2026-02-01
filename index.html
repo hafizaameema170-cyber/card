@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Chuchundar ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a0b2e 100%);
+            color: #f8f8f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Floating Hearts Background */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 203, 0.1);
+            font-size: 20px;
+            animation: float 15s infinite linear;
+        }
+
+        /* Ambient Glow */
+        .bg-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ff6bcb 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: glow 8s infinite alternate;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #1a0b2e 0%, #0c0c0c 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeOut 1s forwards 3s;
+        }
+
+        .welcome-content {
+            text-align: center;
+            padding: 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .welcome-text {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff6bcb, #cc99ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .heart-beat {
+            font-size: 4rem;
+            animation: beat 1.5s infinite;
+            color: #ff6bcb;
+            margin: 20px 0;
+        }
+
+        .typing-text {
+            font-size: 1.2rem;
+            color: #cc99ff;
+            opacity: 0;
+            animation: typing 2s steps(40) forwards 1s;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #ff6bcb;
+            width: 0;
+            margin: 0 auto;
+        }
+
+        /* Main Card Container */
+        .card {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(26, 11, 46, 0.9);
+            border: 2px solid rgba(204, 153, 255, 0.2);
+            border-radius: 25px;
+            padding: 40px 35px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7),
+                        0 0 50px rgba(255, 107, 203, 0.2);
+            backdrop-filter: blur(20px);
+            display: none;
+            animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6bcb, #8a2be2, #ff6bcb);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        .card.active {
+            display: block;
+            animation: cardAppear 0.6s ease;
+        }
+
+        h2 {
+            color: #ff6bcb;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(255, 107, 203, 0.3);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff6bcb, transparent);
+        }
+
+        p {
+            line-height: 1.8;
+            color: #e6d4ff;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #ff6bcb;
+            font-weight: 600;
+        }
+
+        /* Sections */
+        .menu-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .menu-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(204, 153, 255, 0.3);
+            padding: 25px 20px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 203, 0.2), rgba(138, 43, 226, 0.2));
+            border-color: #ff6bcb;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 107, 203, 0.3);
+        }
+
+        .menu-btn i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            color: #ff6bcb;
+        }
+
+        .menu-btn span {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Input Styling */
+        textarea {
+            width: 100%;
+            height: 140px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid #4d3a6d;
+            border-radius: 15px;
+            color: white;
+            padding: 20px;
+            margin: 25px 0;
+            resize: none;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            transition: all 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ff6bcb;
+            box-shadow: 0 0 20px rgba(255, 107, 203, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        textarea::placeholder {
+            color: rgba(204, 153, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Navigation Buttons */
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button.action-btn {
+            flex: 1;
+            padding: 16px 20px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button.action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button.action-btn:hover::before {
+            left: 100%;
+        }
+
+        .primary {
+            background: linear-gradient(45deg, #ff6bcb, #8a2be2);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 203, 0.4);
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 203, 0.6);
+        }
+
+        .secondary {
+            background: rgba(45, 27, 71, 0.8);
+            color: #cc99ff;
+            border: 2px solid #4d3a6d;
+        }
+
+        .secondary:hover {
+            background: rgba(77, 58, 109, 0.8);
+            transform: translateY(-3px);
+            border-color: #cc99ff;
+        }
+
+        /* Question Counter */
+        .question-counter {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #cc99ff;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Special Quotes */
+        .quote {
+            font-style: italic;
+            color: #ffccff;
+            padding: 15px;
+            border-left: 3px solid #ff6bcb;
+            margin: 20px 0;
+            background: rgba(255, 107, 203, 0.1);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* WhatsApp Notification */
+        .whatsapp-notice {
+            background: rgba(37, 211, 102, 0.1);
+            border: 2px solid #25D366;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-notice i {
+            color: #25D366;
+            margin-right: 10px;
+        }
+
+        /* Animations */
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            from { width: 0; opacity: 1; }
+            to { width: 100%; opacity: 1; }
+        }
+
+        @keyframes glow {
+            from { transform: translate(-100px, -100px) scale(1); }
+            to { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: scale(0.8) rotateX(-10deg); }
+            100% { opacity: 1; transform: scale(1) rotateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .welcome-text { font-size: 2.5rem; }
+            .card { padding: 30px 25px; }
+            h2 { font-size: 1.8rem; }
+            .menu-btn { padding: 20px 15px; }
+            .menu-btn i { font-size: 2rem; }
+            textarea { height: 120px; }
+            button.action-btn { padding: 14px 16px; font-size: 1rem; }
+        }
+
+        @media (max-width: 400px) {
+            .welcome-text { font-size: 2rem; }
+            .nav-btns { flex-direction: column; }
+            button.action-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="heartsContainer"></div>
+    <div class="bg-glow"></div>
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen">
+        <div class="welcome-content">
+            <h1 class="welcome-text">Welcome My Chuchundar</h1>
+            <div class="heart-beat">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="typing-text">
+                A special place just for you...
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu Card -->
+    <div class="card active" id="menu">
+        <h2>For My Chuchundar 😘</h2>
+        <p class="quote">"You are my today and all of my tomorrows."</p>
+        
+        <div class="whatsapp-notice">
+            <i class="fab fa-whatsapp"></i>
+            <span>Each answer will be sent directly to my WhatsApp ❤️</span>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-btn" onclick="showSection('about')">
+                <i class="fas fa-heart"></i>
+                <span>Our Story</span>
+            </div>
+            <div class="menu-btn" onclick="showSection('q1')">
+                <i class="fas fa-question-circle"></i>
+                <span>Answer My Questions</span>
+            </div>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9rem; color: rgba(204, 153, 255, 0.7);">
+            Made with <i class="fas fa-heart" style="color:#ff6bcb;"></i> for the one who owns my heart
+        </p>
+    </div>
+
+    <!-- About Section -->
+    <div class="card" id="about">
+        <h2>Our Beautiful Journey ❤️</h2>
+        
+        <p class="quote">"Barish ho rahi thi or ap doston k sath ganday pani me bhag rahay thay... ham par pani ura ura kar. Woh chezz hamesha yaad rahega or jb mein kisi ko story btati tu mera star uop yehi hota."</p>
+        
+        <div style="text-align: left;">
+            <p><strong class="highlight">✨ Things I Love About You:</strong></p>
+            <p>• Aapka "Aap" keh kar baat karna<br>
+            • Meri demands jo aik ap k liye shayad nahi hoti demand but normal insan k liye ho skti<br>
+            • Jo apny pehly bhi bhot pori ki hain or ab bhi poori kartay hain<br>
+            • Sukoon aur comfort feel karwana<br>
+            • Your patience with my silly moods<br>
+            • The way you make me feel special every single day</p>
+        </div>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('menu')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="showSection('q1')">
+                Start Questions <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="card" id="q1">
+        <div class="question-counter">Question 1 of 10</div>
+        <h2>Sawal No. 1 💭</h2>
+        <p>Mein kion pasand hoon? Koi waja batana zaroori hai!</p>
+        <textarea id="ans1" placeholder="Yahan apni dil ki baat likhein..."></textarea>
+        
+        <div class="whatsapp-notice">
+            <i class="fab fa-whatsapp"></i>
+            <span>Answer will be sent to my WhatsApp when you click Next</span>
+        </div>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('about')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(1)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="card" id="q2">
+        <div class="question-counter">Question 2 of 10</div>
+        <h2>Sawal No. 2 💔</h2>
+        <p>Agar main chor doon , toh kya aap mujhe miss karoge? 🥺</p>
+        <textarea id="ans2" placeholder="Sachay dil se jawab dena..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q1')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(2)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="card" id="q3">
+        <div class="question-counter">Question 3 of 10</div>
+        <h2>Sawal No. 3 😊</h2>
+        <p>Mein to rude hoti bhi nahi hoin apko q lagta hain? 🥺</p>
+        <textarea id="ans3" placeholder="Apki asal raye dena..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q2')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(3)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="card" id="q4">
+        <div class="question-counter">Question 4 of 10</div>
+        <h2>Sawal No. 4 🤔</h2>
+        <p>Pehly bhi mein apko tokti thi chezoin pr jis ko apny waja banaya tha chorny ka or ab yeh sb apny start kiya tu ab bhi ap esa kr sktay hain? 🥺</p>
+        <textarea id="ans4" placeholder="Soch samajh kar jawab dena..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q3')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(4)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="card" id="q5">
+        <div class="question-counter">Question 5 of 10</div>
+        <h2>Sawal No. 5 🤔</h2>
+        <p>Aur agar nahi chhor sktay tu ab aur pehly me esa kya fark tha yeh bataein</p>
+        <textarea id="ans5" placeholder="Apni feelings share karein..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q4')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(5)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="card" id="q6">
+        <div class="question-counter">Question 6 of 10</div>
+        <h2>Sawal No. 6 💪</h2>
+        <p>Mere liye stand le paengy ya hamesha sirf compromise pr chalengi mein?</p>
+        <textarea id="ans6" placeholder="Apni commitment ka izhar karein..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q5')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(6)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="card" id="q7">
+        <div class="question-counter">Question 7 of 10</div>
+        <h2>Sawal No. 7 💍</h2>
+        <p>Kheir jb pehly bhi mein shadi se related baat krti thi tu apki haath ti thi tu kya ab bhi esa hai ya ap khud bhi ho?</p>
+        <textarea id="ans7" placeholder="Apki asal khwahish bataein..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q6')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(7)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="card" id="q8">
+        <div class="question-counter">Question 8 of 10</div>
+        <h2>Sawal No. 8 ⏳</h2>
+        <p>Ya ap ab khud chahtay k shadi jaldi ho jae?</p>
+        <textarea id="ans8" placeholder="Apki timeline bataein..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q7')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(8)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="card" id="q9">
+        <div class="question-counter">Question 9 of 10</div>
+        <h2>Sawal No. 9 😟</h2>
+        <p>Apko ab lagny laga k mein bhot batmeez hoin ap mere sath nahi reh apengy?</p>
+        <textarea id="ans9" placeholder="Apki concerns share karein..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q8')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(9)">
+                Send & Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="card" id="q10">
+        <div class="question-counter">Question 10 of 10</div>
+        <h2>Sawal No. 10 💖</h2>
+        <p>Ek aakhri sawal: Kitna pyaar karte ho mujhse? Scale of 1-100 mein bataein! 😉</p>
+        <textarea id="ans10" placeholder="Number ke saath reason bhi dena..."></textarea>
+        
+        <div class="nav-btns">
+            <button class="action-btn secondary" onclick="showSection('q9')">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="action-btn primary" onclick="sendWhatsApp(10)">
+                Final Submit <i class="fab fa-whatsapp"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Finish Screen -->
+    <div class="card" id="finish">
+        <h2>I Love You! 💕</h2>
+        <div style="text-align: center; margin: 30px 0;">
+            <i class="fas fa-heart" style="font-size: 4rem; color: #ff6bcb; margin-bottom: 20px;"></i>
+            <p style="font-size: 1.3rem;">Aapke saare jawab mujhse WhatsApp par mil gaye hain! ❤️</p>
+        </div>
+        
+        <p class="quote">"Thank you for being the best part of my life. Every answer you gave is a treasure I'll keep forever."</p>
+        
+        <p>Shukriya meri life mein aane ke liye, my chuchundar! 💖</p>
+        
+        <button class="action-btn primary" onclick="showSection('menu')" style="width: 100%; margin-top: 30px;">
+            <i class="fas fa-redo"></i> Start Again
+        </button>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = "03292043153";
+        const YOUR_NAME = "Ameena";
+        
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            for(let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            // Add smooth scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            
+            // Add special effects for some sections
+            if(id === 'finish') {
+                showConfetti();
+            }
+        }
+
+        function showConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.top = '0';
+            confetti.style.left = '0';
+            confetti.style.width = '100%';
+            confetti.style.height = '100%';
+            confetti.style.zIndex = '9999';
+            confetti.style.pointerEvents = 'none';
+            
+            for(let i = 0; i < 100; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.position = 'absolute';
+                heart.style.color = ['#ff6bcb', '#cc99ff', '#8a2be2'][Math.floor(Math.random() * 3)];
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '-50px';
+                heart.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                
+                confetti.appendChild(heart);
+            }
+            
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+            
+            // Add fall animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes fall {
+                    to {
+                        transform: translateY(100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function sendWhatsApp(qNum) {
+            let answer = document.getElementById('ans' + qNum).value.trim();
+            
+            if(!answer) {
+                alert("Pehle kuch likho toh sahi! 😊\n\nDil ki baat share karo, main intezar kar rahi hoon...");
+                document.getElementById('ans' + qNum).focus();
+                return;
+            }
+
+            const questions = [
+                "Mein kion pasand hoon? Koi waja batana zaroori hai!",
+                "Agar main chor doon, toh kya aap mujhe miss karoge? 🥺",
+                "Mein to rude hoti bhi nahi hoin apko q lagta hain? 🥺",
+                "Pehly bhi mein apko tokti thi chezoin pr jis ko apny waja banaya tha chorny ka or ab yeh sb apny start kiya tu ab bhi ap esa kr sktay hain? 🥺",
+                "Aur agar nahi chhor sktay tu ab aur pehly me esa kya fark tha yeh bataein",
+                "Mere liye stand le paengy ya hamesha sirf compromise pr chalengi mein?",
+                "Kheir jb pehly bhi mein shadi se related baat krti thi tu apki haath ti thi tu kya ab bhi esa hai ya ap khud bhi ho?",
+                "Ya ap ab khud chahtay k shadi jaldi ho jae?",
+                "Apko ab lagny laga k mein bhot batmeez hoin ap mere sath nahi reh apengy?",
+                "Ek aakhri sawal: Kitna pyaar karte ho mujhse? Scale of 1-100 mein bataein! 😉"
+            ];
+
+            let text = `💖 *Question ${qNum} for ${YOUR_NAME}* 💖\n\n`;
+            text += `*Sawal:* ${questions[qNum-1]}\n\n`;
+            text += `*Jawab:* ${answer}\n\n`;
+            text += `---\n`;
+            text += `Sent from your special love website ❤️`;
+            
+            let url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+            
+            // Open WhatsApp in new tab
+            window.open(url, '_blank');
+            
+            // Show success message
+            setTimeout(() => {
+                alert(`Answer ${qNum} sent successfully! 💕\n\nWhatsApp khul gaya hoga, bas send kar dena!`);
+            }, 500);
+            
+            // Move to next question or finish
+            if(qNum < 10) {
+                setTimeout(() => {
+                    showSection('q' + (qNum + 1));
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    showSection('finish');
+                }, 1500);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingHearts();
+            
+            // Auto focus first answer box
+            setTimeout(() => {
+                const ans1 = document.getElementById('ans1');
+                if(ans1) ans1.focus();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
